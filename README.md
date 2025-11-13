@@ -5,8 +5,8 @@
 </h2>
 
 <h2 align="center">
-   XÂY DỰNG HỆ THỐNG PHÂN TÍCH GIÁM SÁT HÀNH VI CỦA SINH VIÊN<br> TRONG PHÒNG THI 
-   DỰA TRÊN MÔ HÌNH NGÔN NGỮ THỊ GIÁC (VLM)
+   TRIỂN KHAI HỆ THỐNG EDUAI - TỰ ĐỘNG BÁO CÁO NHẬN XÉT VÀ SO SÁNH<br> 
+   BÁO CÁO HỌC TẬP TRÊN GOOGLE WORKSPACE (VLM)
 </h2>
 
 <div align="center">
@@ -55,103 +55,50 @@
 
 ## 🧭 GIỚI THIỆU HỆ THỐNG
 
-Đề tài tập trung vào việc **phân tích và giám sát hành vi của sinh viên trong phòng thi** bằng cách kết hợp giữa **mô hình thị giác máy tính (YOLOv8)** và **mô hình ngôn ngữ thị giác (VLM – BLIP-2)**.  
-
-Hệ thống được xây dựng nhằm:
-- 🎥 Giám sát **video thời gian thực** từ camera IP hoặc webcam.  
-- 🔍 Phát hiện **hành vi khả nghi** như: sử dụng điện thoại, nhìn bài người khác, gian lận.  
-- 🧠 Phân tích ngữ nghĩa hình ảnh bằng **BLIP-2 Flan-T5-XL** để xác nhận hành vi.  
-- 🚨 Phát cảnh báo âm thanh khi phát hiện gian lận.  
-- 💾 Lưu lại **ảnh bằng chứng** cùng thời gian và xác suất gian lận.  
-
----
-
-## 🎯 MỤC TIÊU
-- Phát hiện **tự động** hành vi gian lận trong phòng thi.  
-- Kết hợp giữa **YOLOv8 (thị giác)** và **BLIP-2 (ngữ nghĩa)**.  
-- Sinh báo cáo gồm: ảnh, mô tả hành vi, xác suất, thời gian.  
-- Giao diện hiển thị trực quan (Gradio / Flask).  
-- Ứng dụng trong các **đồ án chuyển đổi số, nghiên cứu AI giám sát thông minh**.
-
----
-
-## ⚙️ CÔNG NGHỆ SỬ DỤNG
-
-| Thành phần | Công nghệ | Vai trò |
-|-------------|------------|----------|
-| Phát hiện đối tượng | **YOLOv8 (Ultralytics)** | Nhận diện người, điện thoại, hành vi bất thường |
-| Phân tích ngữ nghĩa ảnh | **BLIP-2 Flan-T5-XL (HuggingFace)** | Mô tả và hiểu ngữ cảnh hành vi |
-| Xử lý video | **OpenCV + NumPy** | Đọc luồng, trích khung hình, vẽ bounding box |
-| Theo dõi đối tượng | **DeepSort** | Gán ID và theo dõi sinh viên trong khung hình |
-| Giao diện demo | **Gradio / Flask** | Hiển thị, tương tác và chạy thử hệ thống |
-| Cảnh báo | **winsound (Windows)** | Phát âm báo khi phát hiện gian lận |
-| Lưu bằng chứng | **datetime + os** | Lưu log + ảnh vào thư mục `logs/evidence/` |
-
----
+# EDUAI Reports – Hệ thống AI tạo báo cáo giáo dục
+Dự án này được xây dựng bằng **Google Apps Script** và Google Sheets để:
+- Tự động tạo báo cáo cho từng trường
+- Phân tích dữ liệu 2 giai đoạn
+- Sinh nhận xét bằng AI
+- Tạo file so sánh giai đoạn
+## Cấu trúc mã nguồn
+- `ai.gs` – Các hàm giao tiếp với UI và xử lý AI
+- `report.gs` – Tạo báo cáo cho từng giai đoạn
+- `reportComparison.gs` – So sánh dữ liệu giữa 2 giai đoạn
+- `reportGenerator.gs` – Hàm xử lý chính để tạo báo cáo
+- `upload.gs` – Nhận file dữ liệu từ UI
+- `web.gs` – Điều khiển Web App + API đầu ra
+- `ui.html` – Giao diện HTML của Web App
+- `appsscript.json` – Manifest cấu hình Apps Script
+## Cách triển khai
+1. Tạo Google Spreadsheet mới
+2. Mở **Extensions → Apps Script**
+3. Copy toàn bộ code từ repo này vào
+4. Deploy Web App để sử dụng
+> Repo này được tạo để chia sẻ với giáo viên nhằm minh bạch quy trình xử lý và tạo báo cáo AI.
+còn đây là code của tôi , tôi muốn bạn sửa  cho tôi giống code mẫu
 
 ## 🧩 KIẾN TRÚC HỆ THỐNG
 
 
 <p align="center">
-  <img src="img/bbba424c-46f1-4c78-8df5-095d01f67fb1.png" width="400" alt="Sơ đồ kiến trúc hệ thống">
+  <img src="Screenshot 2025-11-13 024253.png"Sơ đồ kiến trúc hệ thống">
 </p>
 
-
----
-
-## 🚀 CÁCH CHẠY DỰ ÁN
-
-```text
-# 1️⃣ Tạo môi trường ảo
-python -m venv venv
-venv\Scripts\activate        # Windows
-# hoặc
-source venv/bin/activate     # Linux / macOS
-
-# 2️⃣ Cài đặt thư viện
-pip install -r requirements.txt
-# 3️⃣ Chạy demo
-python Last.py
-```
-## 🔍 KẾT QUẢ HIỂN THỊ
-
-- 🧾 **Khung người bị phát hiện (YOLOv8)**  
-- 💬 **Xác suất gian lận (%)**  
-- 📸 **Ảnh bằng chứng lưu tại:** `/logs/evidence/`  
-- 🔔 **Âm thanh cảnh báo:** khi xác suất > ngưỡng  
-- 🧠 **Mô tả hành vi từ BLIP-2:**  
-
-**Ví dụ:**
-> “Student using phone”  
-> “Looking at another screen”  
-> “Cheating detected”
----
-
-## 🚧 HƯỚNG PHÁT TRIỂN
-
-- 🔬 Nâng cấp mô hình lên LLaVA-Next / Qwen-VL để tăng độ chính xác.
-
-- ⚡ Tối ưu tốc độ bằng TensorRT / ONNX Runtime.
-
-- 🖥️ Xây dựng bảng điều khiển web giám sát nhiều camera song song.
-
-- 🤖 Tích hợp AI cảnh báo tập trung cho nhiều phòng thi.
-
-- 📊 Thêm mô-đun thống kê & quản lý lịch sử log giám sát.
 
 <div align="center">
 
 ---
 <p align="center">
-  <img src="https://avatars.githubusercontent.com/u/134125904?v=4"
-       alt="Phan Vinh"
+  <img src=""
+       alt="Mừng, Khánh"
        width="200"
        height="200"
        style="border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,0.2); margin-bottom:10px;">
 </p>
 
 <h3>
-  <a href="https://github.com/VnhPhn"> Phan Đình Quang Vinh </a>
+  <a href="https://github.com/NgoThiMung"> Ngô Thị Mừng, Nguyễn Đình  </a>
 </h3>
 
 <h4>
