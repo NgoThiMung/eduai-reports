@@ -82,7 +82,7 @@ còn đây là code của tôi , tôi muốn bạn sửa  cho tôi giống code 
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/<user>/<repo>/main/assets/Screenshot.png" width="500">
+  <img src="https://drive.google.com/uc?export=view&id=1teOPpS7AKq7u7apV7XIuyoKEcfRtwEcA" width="450">
 </p>
 
 
