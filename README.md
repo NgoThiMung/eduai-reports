@@ -89,7 +89,7 @@ còn đây là code của tôi , tôi muốn bạn sửa  cho tôi giống code 
 <div align="center">
 
 <h3>
-  <a href="https://github.com/NgoThiMung"> Ngô Thị Mừng, Nguyễn Đình  </a>
+  <a href="https://github.com/NgoThiMung"> Ngô Thị Mừng, Nguyễn Đình Khánh  </a>
 </h3>
 
 <h4>
